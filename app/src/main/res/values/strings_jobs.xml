@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_matching_jobs">当天工作未安排</string>
+
+    <string name="am_label">上午</string>
+    <string name="pm_label">下午</string>
+    <string name="ques_mark_label">：</string>
+    <string name="title_activity_edit_job">修改工作</string>
+    <string name="title_activity_new_job">新建工作</string>
+    <string name="name_label">领导姓名</string>
+    <string name="date_label">活动日期</string>
+    <string name="am_job_label">上午工作内容</string>
+    <string name="pm_job_label">下午工作内容</string>
+    <string name="note">备注</string>
+    <string name="add_label">新建</string>
+    <string name="sub_label">提交</string>
+    <string name="cancel_label">取消</string>
+    <string name="del_label">删除</string>
+
+    <string name="jobs_error_has_submit">当天的活动安排已经建立</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_contact_detail">通讯录详情</string>
+    <string name="title_activity_search">SearchActivity</string>
+
+    <string name="contact_organization">用户名</string>
+    <string name="contact_department">用户名</string>
+    <string name="contact_personnal">用户名</string>
+
+    <string name="label_cell">手机</string>
+    <string name="label_tel_office">办公电话</string>
+    <string name="label_tel_home">家庭电话</string>
+    <string name="label_org_name">所在单位</string>
+    <string name="label_post">职务</string>
+    <string name="label_email">电子邮件</string>
+    <string name="label_fax">传真</string>
+
+    <string name="no_matching_contacts">通讯录内容为空</string>
+    <string name="no_imsi">当前号码没有获得授权</string>
+
+    <string name="search_label">通讯录</string>
+    <string name="search_hint">搜索姓名、单位、电话</string>
+</resources>

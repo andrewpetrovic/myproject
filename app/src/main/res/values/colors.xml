@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--login-->
+    <color name="button_normal_color">#03a9f4</color>
+    <color name="button_focused_color">#333333</color>
+    <color name="button_pressed_color">#0288d1</color>
+
+    <!--contacts-->
+    <color name="contact_color_default">#22909d</color>
+    <color name="contact_color_red">#d93734</color>
+    <color name="contact_color_orange">#e26920</color>
+    <color name="contact_color_green">#66993a</color>
+    <color name="contact_color_brown">#7f752d</color>
+    <color name="contact_color_purple">#853691</color>
+
+    <!--jobs-->
+    <color name="jobs_color_orange">#ff6633</color>
+    <color name="jobs_color_calendar_top">#757575</color>
+    <color name="jobs_color_calendar_bottom">#ec6a1a</color>
+    <color name="jobs_color_item_background">#efefef</color>
+    <color name="jobs_color_item_border">#cccccc</color>
+    <color name="sub_button_normal_color">#03a9f4</color>
+    <color name="sub_button_focused_color">#333333</color>
+    <color name="sub_button_pressed_color">#0288d1</color>
+    <color name="cancle_button_normal_color">#03a9f4</color>
+    <color name="cancle_button_focused_color">#333333</color>
+    <color name="cancle_button_pressed_color">#0288d1</color>
+    <color name="del_button_normal_color">#03a9f4</color>
+    <color name="del_button_focused_color">#333333</color>
+    <color name="del_button_pressed_color">#0288d1</color>
+
+</resources>

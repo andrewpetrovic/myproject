@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:qhyj="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_del_job"
+        android:icon="@drawable/ic_delete"
+        android:orderInCategory="1"
+        android:title="@string/del_label"
+        qhyj:showAsAction="always" />
+</menu>

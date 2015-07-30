@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.itic.mobile.zfyj.qh.jobs.ui.BrowseJobsActivity">
+
+    <!-- Main layout -->
+    <com.itic.mobile.base.ui.widget.DrawShadowFrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        app:shadowDrawable="@drawable/header_shadow">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.itic.mobile.base.ui.widget.ObservableScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:fillViewport="true"
+                android:background="#fff">
+
+                <FrameLayout
+                    android:id="@+id/scroll_view_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false">
+
+                    <FrameLayout
+                        android:id="@+id/contact_photo_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                            android:id="@+id/calendarView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/navdrawer_background"
+                            app:mcv_showOtherDates="true"
+                            app:mcv_selectionColor="@color/theme_primary_light"
+                            app:mcv_dateTextAppearance="@style/TextAppearance.CalendarView.Date"
+                            app:mcv_weekDayTextAppearance="@style/TextAppearance.CalendarView.WeekDay"
+                            app:mcv_weekDayLabels="@array/custom_weekdays" />
+                    </FrameLayout>
+
+                    <!--
+                <FrameLayout
+                    android:id="@+id/details_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </FrameLayout>
+                    <com.itic.mobile.zfyj.qh.jobs.ui.JobsListView
+                        android:id="@+id/jobs_collection_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/explore_grid_padding_half"
+                        android:clipToPadding="false"
+                        android:scrollbarStyle="outsideOverlay"
+                        app:internalPadding="@dimen/explore_grid_padding" />
+                                        -->
+                    <com.itic.mobile.zfyj.qh.jobs.ui.JobsDataContainer
+                        android:id="@+id/jobs_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#fff"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="@dimen/session_details_extra_space_bottom"
+                        android:clipToPadding="false"
+                        android:weightSum="1" />
+
+
+                    <ProgressBar
+                        android:id="@+id/loading"
+                        android:visibility="gone"
+                        android:paddingTop="?actionBarSize"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/empty_text"
+                        android:visibility="gone"
+                        android:paddingTop="?actionBarSize"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textColor="@color/body_text_2" />
+
+
+                </FrameLayout>
+
+            </com.itic.mobile.base.ui.widget.ObservableScrollView>
+
+            <LinearLayout
+                android:id="@+id/headerbar"
+                style="@style/HeaderBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <include layout="@layout/toolbar_actionbar" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </com.itic.mobile.base.ui.widget.DrawShadowFrameLayout>
+
+    <!-- Nav drawer -->
+    <include layout="@layout/navdrawer" />
+
+</android.support.v4.widget.DrawerLayout>

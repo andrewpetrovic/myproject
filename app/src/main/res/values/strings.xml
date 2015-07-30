@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">青海应急</string>
+
+    <string name="navigation_drawer_item_show_contacts">通讯录</string>
+    <string name="navigation_drawer_item_show_leader_jobs">领导工作安排</string>
+    <string name="navigation_drawer_item_show_leader_on_job_state">领导在岗状态</string>
+    <string name="navigation_drawer_item_show_duty">值班表</string>
+    <string name="navigation_drawer_item_about">关于</string>
+
+    <string name="menu_title_add">add</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>

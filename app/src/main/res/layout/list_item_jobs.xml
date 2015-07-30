@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/job_item_background"
+        android:layout_marginLeft="@dimen/page_margin_width"
+        android:layout_marginStart="@dimen/page_margin_width"
+        android:layout_marginRight="@dimen/page_margin_width"
+        android:layout_marginEnd="@dimen/page_margin_width"
+        android:layout_marginTop="@dimen/element_spacing_normal"
+        android:layout_marginBottom="@dimen/element_spacing_normal"
+        android:paddingLeft="44dp"
+        android:paddingRight="44dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/tv_leader_name"
+                android:layout_gravity="center_vertical|start"
+                android:textColor="@color/jobs_color_orange"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_jobs_leader"
+                android:layout_gravity="center_vertical" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/am_label"
+                android:textColor="@color/jobs_color_orange"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/ques_mark_label"
+                android:textColor="@color/list_item_text_color_gray_light"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:id="@+id/tv_am_job"
+                android:layout_gravity="right"
+                android:textColor="@color/list_item_text_color_gray_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/pm_label"
+                android:textColor="@color/jobs_color_orange"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/ques_mark_label"
+                android:textColor="@color/list_item_text_color_gray_light"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:id="@+id/tv_pm_job"
+                android:layout_gravity="right"
+                android:textColor="@color/list_item_text_color_gray_light"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

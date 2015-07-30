@@ -1,0 +1,352 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.itic.mobile.zfyj.qh.contacts.ui.ContactDetailActivity">
+
+    <com.itic.mobile.base.ui.widget.ObservableScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:fillViewport="true"
+        android:background="#fff">
+
+        <FrameLayout
+            android:id="@+id/scroll_view_child"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
+
+            <!--Background photo-->
+            <FrameLayout
+                android:id="@+id/contact_photo_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/contact_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_white"
+                        android:contentDescription="@string/app_name"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                android:paddingTop="16dp"
+                android:paddingBottom="@dimen/session_details_extra_space_bottom"
+                android:clipToPadding="false"
+                android:weightSum="1">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:id="@+id/phone_container">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="28dp"
+                        android:src="@drawable/ic_contacts_phone"
+                        android:contentDescription="@string/app_name"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/keyline_2_session_detail"
+                            android:id="@+id/cell_container">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_cell_phone"
+                                android:layout_gravity="top"
+                                android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                                android:layout_marginStart="@dimen/keyline_2"
+                                android:layout_marginTop="16dp"
+                                android:textColor="@color/list_item_text_color_gray_dark"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_cell"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                                android:layout_marginStart="@dimen/keyline_2_session_detail"
+                                android:layout_marginBottom="16dp"
+                                android:textColor="@color/list_item_text_color_gray_light"
+                                android:textSize="16sp"/>
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/sms_btn"
+                                android:src="@drawable/ic_contacts_sms"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="@string/app_name"/>
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/keyline_2_session_detail"
+                            android:id="@+id/tel_office_container">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_tel_office"
+                                android:layout_gravity="top"
+                                android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                                android:layout_marginStart="@dimen/keyline_2_session_detail"
+                                android:layout_marginTop="16dp"
+                                android:textColor="@color/list_item_text_color_gray_dark"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_tel_office"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                                android:layout_marginStart="@dimen/keyline_2_session_detail"
+                                android:layout_marginBottom="16dp"
+                                android:textColor="@color/list_item_text_color_gray_light"
+                                android:textSize="16sp"/>
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/keyline_2_session_detail"
+                            android:id="@+id/tel_home_container">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_tel_home"
+                                android:layout_gravity="top"
+                                android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                                android:layout_marginStart="@dimen/keyline_2_session_detail"
+                                android:layout_marginTop="16dp"
+                                android:textColor="@color/list_item_text_color_gray_dark"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_tel_home"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                                android:layout_marginStart="@dimen/keyline_2_session_detail"
+                                android:layout_marginBottom="16dp"
+                                android:textColor="@color/list_item_text_color_gray_light"
+                                android:textSize="16sp"/>
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/keyline_2_session_detail"
+                    android:id="@+id/org_container">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_contacts_house"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginTop="16dp"
+                        android:id="@+id/tv_org"
+                        android:textColor="@color/list_item_text_color_gray_dark"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_org_name"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="@color/list_item_text_color_gray_light"
+                        android:textSize="16sp"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/keyline_2_session_detail"
+                    android:id="@+id/post_container">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_contacts_person"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:contentDescription="@string/app_name"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_post"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@color/list_item_text_color_gray_dark"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_post"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="@color/list_item_text_color_gray_light"
+                        android:textSize="16sp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/keyline_2_session_detail"
+                    android:id="@+id/email_container">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_contacts_house"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginTop="16dp"
+                        android:id="@+id/tv_email"
+                        android:textColor="@color/list_item_text_color_gray_dark"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_email"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="@color/list_item_text_color_gray_light"
+                        android:textSize="16sp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/keyline_2_session_detail"
+                    android:id="@+id/fax_container">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_contacts_house"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_fax"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@color/list_item_text_color_gray_dark"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_fax"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                        android:layout_marginStart="@dimen/keyline_2_session_detail"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="@color/list_item_text_color_gray_light"
+                        android:textSize="16sp" />
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/header_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <!--Name-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="@dimen/keyline_2_session_detail"
+                    android:layout_marginStart="@dimen/keyline_2_session_detail"
+                    android:layout_marginRight="@dimen/keyline_1"
+                    android:layout_marginEnd="@dimen/keyline_1"
+                    android:layout_gravity="start"
+                    android:id="@+id/contact_name"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/text_size_large"
+                    android:lineSpacingMultiplier="1.1"
+                    android:textStyle="@integer/font_textStyle_medium"
+                    android:fontFamily="@string/font_fontFamily_medium"
+                    android:textColor="@color/body_text_1_inverse"
+                    android:textAlignment="viewStart"/>
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </com.itic.mobile.base.ui.widget.ObservableScrollView>
+
+    <include layout="@layout/toolbar_actionbar"/>
+</FrameLayout>
