@@ -29,7 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.itic.mobile.R;
-import com.itic.mobile.util.Lists;
+import com.itic.mobile.util.data.Lists;
 
 import java.util.ArrayList;
 import java.util.HashSet;
