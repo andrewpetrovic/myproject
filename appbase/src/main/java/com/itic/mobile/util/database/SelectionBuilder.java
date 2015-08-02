@@ -26,12 +26,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.itic.mobile.util.Lists;
-import com.itic.mobile.util.Maps;
+import com.itic.mobile.util.data.Lists;
+import com.itic.mobile.util.data.Maps;
 
 import java.util.ArrayList;
 import java.util.Arrays;
