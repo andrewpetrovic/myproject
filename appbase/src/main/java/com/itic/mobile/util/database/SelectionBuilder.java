@@ -1,20 +1,4 @@
 /*
- * Copyright 2014 Google Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/*
  * Modifications:
  * -Imported from AOSP frameworks/base/core/java/com/android/internal/content
  * -Changed package name
@@ -40,7 +24,6 @@ import java.util.Set;
 
 /**
  * Helper类用来构造selection子句,这个类不是线程安全的
- *
  * @author Andrea Ji
  */
 public class SelectionBuilder {
@@ -66,8 +49,7 @@ public class SelectionBuilder {
     }
 
     /**
-     * Append the given selection clause to the internal state. Each clause is
-     * surrounded with parenthesis and combined using {@code AND}.
+     * 构造查询字句
      */
     public SelectionBuilder where(String selection, String... selectionArgs) {
         if (TextUtils.isEmpty(selection)) {
@@ -92,23 +74,32 @@ public class SelectionBuilder {
         return this;
     }
 
+    /**
+     *  构造groupby字句
+     */
     public SelectionBuilder groupBy(String groupBy) {
         mGroupBy = groupBy;
         return this;
     }
 
+    /**
+     *  构造having字句
+     */
     public SelectionBuilder having(String having) {
         mHaving = having;
         return this;
     }
 
+    /**
+     *  指定table
+     */
     public SelectionBuilder table(String table) {
         mTable = table;
         return this;
     }
 
     /**
-     * Replace positional params in table. Use for JOIN ON conditions.
+     * 构造JOIN ON查询
      */
     public SelectionBuilder table(String table, String... tableParams) {
         if (tableParams != null && tableParams.length > 0) {
@@ -142,8 +133,7 @@ public class SelectionBuilder {
     }
 
     /**
-     * Return selection string for current internal state.
-     *
+     * 获取查询条件
      * @see #getSelectionArgs()
      */
     public String getSelection() {
@@ -151,8 +141,7 @@ public class SelectionBuilder {
     }
 
     /**
-     * Return selection arguments for current internal state.
-     *
+     * 获取查询条件值
      * @see #getSelection()
      */
     public String[] getSelectionArgs() {
@@ -176,14 +165,14 @@ public class SelectionBuilder {
     }
 
     /**
-     * Execute query using the current internal state as {@code WHERE} clause.
+     * 执行查询
      */
     public Cursor query(SQLiteDatabase db, String[] columns, String orderBy) {
         return query(db, false, columns, orderBy, null);
     }
 
     /**
-     * Execute query using the current internal state as {@code WHERE} clause.
+     * 执行查询
      */
     public Cursor query(SQLiteDatabase db, boolean distinct, String[] columns, String orderBy,
                         String limit) {
@@ -199,11 +188,17 @@ public class SelectionBuilder {
         return null;
     }
 
+    /**
+     * 生成SQL
+     */
     public String buildQueryString(boolean distinct, String[] columns, String orderBy, String limit) {
         return SQLiteQueryBuilder.buildQueryString(
                 distinct, mTable, columns, getSelection(), mGroupBy, mHaving, orderBy, limit);
     }
 
+    /**
+     * 构造Union子查询SQL
+     */
     public String buildUnionSubQueryString(
             boolean distinct, String typeDiscriminatorColumn,
             String[] unionColumns, Set<String> columnsPresentInTable,
@@ -215,19 +210,25 @@ public class SelectionBuilder {
         return builder.buildUnionSubQuery(typeDiscriminatorColumn, unionColumns, columnsPresentInTable, computedColumnsOffset, typeDiscriminatorValue, selection, groupBy, having);
     }
 
+    /**
+     * 构造Union查询SQL
+     */
     public String buildUnionQueryString(boolean distinct, String[] subQueries, String sortOrder, String limit) {
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         builder.setDistinct(distinct);
         return builder.buildUnionQuery(subQueries, sortOrder, limit);
     }
 
-    public Cursor buildUnionQuery(SQLiteDatabase db, String sql, String[] selectionArgs) {
+    /**
+     * 执行Union查询
+     */
+    public Cursor unionQuery(SQLiteDatabase db, String sql, String[] selectionArgs) {
         Collections.addAll(mSelectionArgs, selectionArgs);
         return db.rawQuery(sql, getSelectionArgs());
     }
 
     /**
-     * Execute update using the current internal state as {@code WHERE} clause.
+     * 执行update操作
      */
     public int update(SQLiteDatabase db, ContentValues values) {
         assertTable();
@@ -236,7 +237,7 @@ public class SelectionBuilder {
     }
 
     /**
-     * Execute delete using the current internal state as {@code WHERE} clause.
+     * 执行delete操作
      */
     public int delete(SQLiteDatabase db) {
         assertTable();
