@@ -41,8 +41,12 @@ public class CharUtils {
 		}
 		return false;
 	}
-	
-	// 判断字符是否是中日韩文字
+
+	/**
+	 * 判断字符是否是中日韩文字
+	 * @param c
+	 * @return 是中日韩文字则反返回true
+	 */
 	private static boolean isCJHLanguage(char c) {
 		Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
 		if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS // 中日韩统一表意文字
@@ -64,8 +68,6 @@ public class CharUtils {
 		return false;
 	}
 
-	
-	// 根据Unicode编码判断中文汉字和符号
 	private static boolean isChinese(char c) {
 		Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
 		if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS // 中日韩统一表意文字
@@ -81,7 +83,12 @@ public class CharUtils {
 		return false;
 	}
 
-	// 完整的判断中文汉字和符号
+
+	/**
+	 * 根据Unicode编码判断是否是中文汉字和符号
+	 * @param strName
+	 * @return 是中文汉字或者中文符号则返回true
+	 */
 	public static boolean isChinese(String strName) {
 		char[] ch = strName.toCharArray();
 		for (int i = 0; i < ch.length; i++) {
@@ -93,7 +100,11 @@ public class CharUtils {
 		return false;
 	}
 
-    // 完整的判断中文汉字
+	/**
+	 * 根据Unicode编码判断中文汉字
+	 * @param strName
+	 * @return 是中文汉字则返回true
+	 */
     public static boolean isChineseCharacters(String strName){
         char[] ch = strName.toCharArray();
         for (int i = 0; i < ch.length; i++) {
@@ -105,7 +116,6 @@ public class CharUtils {
         return false;
     }
 
-    // 根据Unicode编码判断中文汉字
     private static boolean isChineseCharacter(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
         if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS // 中日韩统一表意文字
@@ -118,7 +128,9 @@ public class CharUtils {
         return false;
     }
 
-    // 只能判断部分CJK字符（CJK统一汉字）
+	/**
+	 * 只能判断部分CJK字符（CJK统一汉字）
+	 */
 	public static boolean isChineseByREG(String str) {
 		if (str == null) {
 			return false;
@@ -127,7 +139,9 @@ public class CharUtils {
 		return pattern.matcher(str.trim()).find();
 	}
 
-	// 只能判断部分CJK字符（CJK统一汉字）
+	/**
+	 * 只能判断部分CJK字符（CJK统一汉字）
+	 */
 	public static boolean isChineseByName(String str) {
 		if (str == null) {
 			return false;
@@ -138,6 +152,4 @@ public class CharUtils {
 		Pattern pattern = Pattern.compile(reg);
 		return pattern.matcher(str.trim()).find();
 	}
-
-
 }
