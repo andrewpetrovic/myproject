@@ -118,9 +118,4 @@ public class AccountUtils {
     private static String makeAccountSpecificPrefKey(String accountName, String prefix) {
         return prefix + accountName;
     }
-
-//    public static void refreshAuthToken(Context mContext) {
-//        invalidateAuthToken(mContext);
-//        tryAuthenticateWithErrorNotification(mContext, ScheduleContract.CONTENT_AUTHORITY);
-//    }
 }
