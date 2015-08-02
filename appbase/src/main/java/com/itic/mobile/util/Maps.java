@@ -19,13 +19,13 @@ package com.itic.mobile.util;
 import java.util.HashMap;
 
 /**
- * Provides static methods for creating mutable {@code Maps} instances easily.
+ * HashMap 工具类
  */
 public class Maps {
     /**
-     * Creates a {@code HashMap} instance.
+     * 创建一个空的HashMap
      *
-     * @return a newly-created, initially-empty {@code HashMap}
+     * @return {@code HashMap}
      */
     public static <K, V> HashMap<K, V> newHashMap() {
         return new HashMap<K, V>();
