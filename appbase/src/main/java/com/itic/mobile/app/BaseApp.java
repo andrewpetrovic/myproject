@@ -5,12 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
-import com.itic.mobile.app.Constants.Config;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.itic.mobile.Config;
 
 /**
  * 
@@ -25,7 +20,7 @@ public class BaseApp extends Application {
 	@Override
 	public void onCreate() {
 		/*执行严格模式*/
-		if (Config.DEVELOPER_MODE
+		if (Config.IS_DOGFOOD_BUILD
 				&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
 			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
 					.detectAll().penaltyDialog().build());
