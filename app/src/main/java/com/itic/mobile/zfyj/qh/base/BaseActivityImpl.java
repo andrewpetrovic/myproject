@@ -146,6 +146,9 @@ public class BaseActivityImpl extends AbstractBaseActivity implements Callback{
         }
     }
 
+    /**
+     * 初始化数据
+     */
     private void performDataBootstrap() {
         final Context appContext = getApplicationContext();
         Log.i(TAG, "Starting data bootstrap background thread.");
