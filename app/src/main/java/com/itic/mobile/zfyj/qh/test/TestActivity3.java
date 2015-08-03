@@ -6,9 +6,6 @@ import com.itic.mobile.zfyj.qh.R;
 import com.itic.mobile.zfyj.qh.base.BaseActivityImpl;
 
 /**
- * 这里用一句话描述这个类的作用
- *
- * @author Andrea Ji
  */
 public class TestActivity3 extends BaseActivityImpl {
 

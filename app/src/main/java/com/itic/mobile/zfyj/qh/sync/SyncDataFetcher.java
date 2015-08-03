@@ -83,11 +83,11 @@ public class SyncDataFetcher {
     }
 
     /**
-     * ��Զ�˷���������Fetches data from the remote server.
+     * 获取数据Fetches data from the remote server.
      *
-     * @param refTimestamp ʱ��������Զ�����ݱȸ�ʱ����ɣ�����Ҫ�������ݲ��Ҹ÷��������� null
-     * @return �������ݣ����߷��� null
-     * @throws IOException ��������ʱ�����쳣
+     * @param refTimestamp 时间戳
+     * @return 获取到的数据
+     * @throws IOException 下载数据时发生异常
      */
     public String fetchConferenceDataIfNewer(String refTimestamp) throws IOException {
         if (TextUtils.isEmpty(getUrl())) {
@@ -98,11 +98,6 @@ public class SyncDataFetcher {
         BasicHttpClient httpClient = new BasicHttpClient();
         httpClient.setRequestLogger(mQuietLogger);
 
-        // Only download if data is newer than refTimestamp
-        // Cloud Storage is very picky with the If-Modified-Since format. If it's in a wrong
-        // format, it refuses to serve the file, returning 400 HTTP error. So, if the
-        // refTimestamp is in a wrong format, we simply ignore it. But pay attention to this
-        // warning in the log, because it might mean unnecessary data is being downloaded.
         if (!TextUtils.isEmpty(refTimestamp)) {
             if (TimeUtils.isValidFormatForIfModifiedSinceHeader(refTimestamp)) {
                 httpClient.addHeader("If-Modified-Since", refTimestamp);

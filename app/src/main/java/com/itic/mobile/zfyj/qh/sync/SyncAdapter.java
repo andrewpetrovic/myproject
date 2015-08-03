@@ -14,7 +14,7 @@ import com.itic.mobile.zfyj.qh.BuildConfig;
 import java.util.regex.Pattern;
 
 /**
- * Created by JEEKR on 2015/5/26.
+ * SyncAdapter
  */
 public class SyncAdapter extends AbstractThreadedSyncAdapter {
 

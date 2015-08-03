@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by andrew on 2014/8/19.
+ * Config
  */
 public class Config {
     public static long accessId = 2100085283L;

@@ -14,13 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.BaseAdapter;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itic.mobile.base.ui.widget.DrawShadowFrameLayout;
-import com.itic.mobile.util.ThrottledContentObserver;
+import com.itic.mobile.util.observer.ThrottledContentObserver;
 import com.itic.mobile.util.datetime.DateTimeUtils;
 import com.itic.mobile.util.ui.TextViewUtils;
 import com.itic.mobile.util.ui.UIUtils;
@@ -39,7 +38,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Andrea Ji
  */
 public class TestActivity2 extends BaseActivityImpl implements OnDateChangedListener, LoaderManager.LoaderCallbacks<Cursor> {
 

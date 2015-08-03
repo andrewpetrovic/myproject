@@ -1,7 +1,7 @@
 package com.itic.mobile.zfyj.qh;
 
 /**
- * Created by JEEKR on 2015/1/27.
+ * QHYJApi
  */
 public class QHYJApi {
     public static final String LoginInterfaceService = Config.SERVER_HOST + "/admin/mobile!saveMobileToken.action";

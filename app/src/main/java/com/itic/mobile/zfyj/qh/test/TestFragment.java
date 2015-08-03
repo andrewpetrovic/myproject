@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 import com.itic.mobile.zfyj.qh.R;
 
 /**
- * 这里用一句话描述这个类的作用
- *
- * @author Andrea Ji
  */
 public class TestFragment extends ListFragment {
 

@@ -5,11 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.shapes.Shape;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,11 +29,10 @@ import android.widget.TextView;
 
 import com.itic.mobile.base.ui.widget.CollectionView;
 import com.itic.mobile.base.ui.widget.CollectionViewCallbacks;
-import com.itic.mobile.util.ThrottledContentObserver;
+import com.itic.mobile.util.observer.ThrottledContentObserver;
 import com.itic.mobile.zfyj.qh.Config;
 import com.itic.mobile.zfyj.qh.base.AbstractBaseActivity;
 import com.itic.mobile.zfyj.qh.R;
-import com.itic.mobile.zfyj.qh.contacts.model.Contact;
 import com.itic.mobile.zfyj.qh.contacts.model.ContactTypeMetadata;
 import com.itic.mobile.zfyj.qh.provider.Contract;
 
