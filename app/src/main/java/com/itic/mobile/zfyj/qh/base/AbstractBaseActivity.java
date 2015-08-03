@@ -46,7 +46,6 @@ import android.widget.Toast;
 import com.itic.mobile.accounts.AccountUtils;
 import com.itic.mobile.base.ui.widget.MultiSwipeRefreshLayout;
 import com.itic.mobile.base.ui.widget.ScrimInsetsScrollView;
-import com.itic.mobile.util.RecentTasksStyler;
 import com.itic.mobile.util.ui.UIUtils;
 import com.itic.mobile.util.app.PrefUtils;
 import com.itic.mobile.util.ui.LUtils;
@@ -69,7 +68,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     // Navigation drawer 主菜单
     private DrawerLayout mDrawerLayout;
 
-    // Helper methods for L APIs
+    //  Android 5.0 APIs Helper 类
     private LUtils mLUtils;
 
     private ObjectAnimator mStatusBarColorAnimator;
@@ -81,12 +80,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     private ImageView mExpandAccountBoxIndicator;
     private boolean mAccountBoxExpanded = false;
 
-    // When set, these components will be shown/hidden in sync with the action bar
-    // to implement the "quick recall" effect (the Action Bar and the header views disappear
-    // when you scroll down a list, and reappear quickly when you scroll up).
     private ArrayList<View> mHideableHeaderViews = new ArrayList<View>();
 
-    // Durations for certain animations we use:
+    // 动画持续时间
     private static final int HEADER_HIDE_ANIM_DURATION = 300;
     private static final int ACCOUNT_BOX_EXPAND_ANIM_DURATION = 200;
 
@@ -94,37 +90,36 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     protected static final int NAVDRAWER_ITEM_SEPARATOR = -2;
     protected static final int NAVDRAWER_ITEM_SEPARATOR_SPECIAL = -3;
 
-    // delay to launch nav drawer item, to allow close animation to play
+    // 延迟运行 nav drawer item, 保证nav drawer关闭动画正常显示
     private static final int NAVDRAWER_LAUNCH_DELAY = 250;
 
-    // fade in and fade out durations for the main content when switching between
-    // different Activities of the app through the Nav Drawer
+    // 通过nav drawer 切换 activity 时的淡入淡出动画时间
     private static final int MAIN_CONTENT_FADEOUT_DURATION = 150;
     private static final int MAIN_CONTENT_FADEIN_DURATION = 250;
 
-    // list of navdrawer items that were actually added to the navdrawer, in order
+    // 存放nav drawer item id 的数组
     protected ArrayList<Integer> mNavDrawerItems = new ArrayList<Integer>();
 
-    // views that correspond to each navdrawer item, null if not yet created
+    // nav drawer item view 数组
     private View[] mNavDrawerItemViews = null;
 
-    // SwipeRefreshLayout allows the user to swipe the screen down to trigger a manual refresh
+    // 下拉刷新组件
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    // handle to our sync observer (that notifies us about changes in our sync state)
+    // 用来监听 sync observer
     private Object mSyncObserverHandle;
 
     // Primary toolbar and drawer toggle
     private Toolbar mActionBarToolbar;
 
-    // variables that control the Action Bar auto hide behavior (aka "quick recall")
+    // 用来控制ActionBar 自动隐藏的状态
     private boolean mActionBarAutoHideEnabled = false;
     private int mActionBarAutoHideSensivity = 0;
     private int mActionBarAutoHideMinY = 0;
     private int mActionBarAutoHideSignal = 0;
     private boolean mActionBarShown = true;
 
-    // A Runnable that we should execute when the navigation drawer finishes its closing animation
+    // 在线程中执行nva drawer 关闭动画
     private Runnable mDeferredOnDrawerClosedRunnable;
 
     private boolean mManualSyncRequest;
@@ -143,10 +138,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
 
         mHandler = new Handler();
 
-        // Enable or disable each Activity depending on the form factor. This is necessary
-        // because this app uses many implicit intents where we don't name the exact Activity
-        // in the Intent, so there should only be one enabled Activity that handles each
-        // Intent in the app.
+        //开启设备类型识别功能
         UIUtils.enableDisableActivitiesByFormFactor(this);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -215,18 +207,14 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     }
 
     /**
-     * Returns the navigation drawer item that corresponds to this Activity. Subclasses
-     * of BaseActivity override this to indicate what nav drawer item corresponds to them
-     * Return NAVDRAWER_ITEM_INVALID to mean that this Activity should not have a Nav Drawer.
+     *一级界面必须覆盖这个方法，返回值为BaseActivityImpl中定义的与该acivity对应的NAVDRAWER_ITEM值
      */
     protected int getSelfNavDrawerItem() {
         return NAVDRAWER_ITEM_INVALID;
     }
 
     /**
-     * Sets up the navigation drawer as appropriate. Note that the nav drawer will be
-     * different depending on whether the attendee indicated that they are attending the
-     * event on-site vs. attending remotely.
+     * 设置 nav drawer
      */
     private void setupNavDrawer() {
         // What nav drawer item should be selected?
@@ -330,13 +318,13 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         getActionBarToolbar();
     }
 
-    // Subclasses can override this for custom behavior
     protected void onNavDrawerStateChanged(boolean isOpen, boolean isAnimating) {
         if (mActionBarAutoHideEnabled && isOpen) {
             autoShowOrHideActionBar(true);
         }
     }
 
+    //获取账号类型
     protected abstract String getAccountType();
 
     @Override
@@ -356,9 +344,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     }
 
     /**
-     * Sets up the account box. The account box is the area at the top of the nav drawer that
-     * shows which account the user is logged in as, and lets them switch accounts. It also
-     * shows the user's Google+ cover photo as background.
+     * 设置Account Box
      */
     private void setupAccountBox() {
         mAccountListContainer = (LinearLayout) findViewById(R.id.account_list);
@@ -412,6 +398,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         populateAccountList(accounts);
     }
 
+    /**
+     * 填充AccountList
+     */
     private void populateAccountList(List<Account> accounts) {
         mAccountListContainer.removeAllViews();
         LayoutInflater layoutInflater = LayoutInflater.from(this);
@@ -451,6 +440,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         // override if you want to be notified when another account has been selected account has changed
     }
 
+    // 设置账号切换功能
     private void setupAccountBoxToggle() {
         int selfItem = getSelfNavDrawerItem();
         if (mDrawerLayout == null || selfItem == NAVDRAWER_ITEM_INVALID) {
@@ -518,6 +508,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
 
     protected abstract void goToNavDrawerItem(int item);
 
+    /**
+     * nav drawer 点击事件
+     */
     protected void onNavDrawerItemClicked(final int itemId) {
         if (itemId == getSelfNavDrawerItem()) {
             mDrawerLayout.closeDrawer(Gravity.START);
@@ -564,7 +557,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     }
 
     /**
-     * Converts an intent into a {@link android.os.Bundle} suitable for use as fragment arguments.
+     * 将intent转换为argument，在fragment中使用
      */
     public static Bundle intentToFragmentArguments(Intent intent) {
         Bundle arguments = new Bundle();
@@ -586,7 +579,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     }
 
     /**
-     * Converts a fragment arguments bundle into an intent.
+     * 将argument 转换为 intent
      */
     public static Intent fragmentArgumentsToIntent(Bundle arguments) {
         Intent intent = new Intent();
@@ -622,7 +615,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     protected abstract void startLoginProcess();
 
     /**
-     * Initializes the Action Bar auto-hide (aka Quick Recall) effect.
+     * 初始化ActionBar自动隐藏功能
      */
     private void initActionBarAutoHide() {
         mActionBarAutoHideEnabled = true;
@@ -633,12 +626,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     }
 
     /**
-     * Indicates that the main content has scrolled (for the purposes of showing/hiding
-     * the action bar for the "action bar auto hide" effect). currentY and deltaY may be exact
-     * (if the underlying view supports it) or may be approximate indications:
-     * deltaY may be INT_MAX to mean "scrolled forward indeterminately" and INT_MIN to mean
-     * "scrolled backward indeterminately".  currentY may be 0 to mean "somewhere close to the
-     * start of the list" and INT_MAX to mean "we don't know, but not at the start of the list"
+     * main content滑动时显示/隐藏ActionBar 的逻辑
      */
     private void onMainContentScrolled(int currentY, int deltaY) {
         if (deltaY > mActionBarAutoHideSensivity) {
@@ -945,8 +933,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     protected abstract int getDrawerItemTitleID(int itemID);
 
     /**
-     * Sets up the given navdrawer item's appearance to the selected state. Note: this could
-     * also be accomplished (perhaps more cleanly) with state-based layouts.
+     * 设置nav drawer item 选中态
      */
     private void setSelectedNavDrawerItem(int itemId) {
         if (mNavDrawerItemViews != null) {
