@@ -12,7 +12,7 @@ import com.itic.mobile.zfyj.qh.R;
 import com.itic.mobile.zfyj.qh.contacts.ui.BrowseContactsActivity;
 
 /**
- * Created by JEEKR on 2015/1/27.
+ * 闪屏界面
  */
 public class SplashScreenActivity extends ActionBarActivity {
 
