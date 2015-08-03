@@ -36,30 +36,12 @@ import com.itic.mobile.util.string.MD5Utils;
 import com.tencent.android.tpush.XGPushConfig;
 
 /**
- * A login screen that offers login via email/password.
+ * 登录界面
  */
 public class LoginActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    /**
-     * Auth token type
-     */
-    public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-//    private UserLoginTask mAuthTask = null;
-
-    // UI references.
-    private AutoCompleteTextView mEmailView;
+    // UI 组件.
+    private AutoCompleteTextView mUserNameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -70,8 +52,8 @@ public class LoginActivity extends ActionBarActivity implements LoaderManager.Lo
         setContentView(R.layout.activity_login);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.username);
+        // 设置login form
+        mUserNameView = (AutoCompleteTextView) findViewById(R.id.username);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -104,52 +86,40 @@ public class LoginActivity extends ActionBarActivity implements LoaderManager.Lo
 
 
     /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * 登录流程
      */
     public void attemptLogin() {
-//        if (mAuthTask != null) {
-//            return;
-//        }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUserNameView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
-        final String username = mEmailView.getText().toString();
+        // 获取输入内容
+        final String username = mUserNameView.getText().toString();
         final String password = MD5Utils.md5(mPasswordView.getText().toString()).toUpperCase();
 
         boolean cancel = false;
         View focusView = null;
 
 
-        // Check for a valid password, if the user entered one.
+        // 检查输入内容
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid username address.
         if (TextUtils.isEmpty(username)) {
-            mEmailView.setError(getString(R.string.error_username_field_required));
-            focusView = mEmailView;
+            mUserNameView.setError(getString(R.string.error_username_field_required));
+            focusView = mUserNameView;
             cancel = true;
         }
-//        else if (!isEmailValid(username)) {
-//            mEmailView.setError(getString(R.string.error_invalid_email));
-//            focusView = mEmailView;
-//            cancel = true;
-//        }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+            // 如果输入错误，则在UI上提示，不发起登录
             focusView.requestFocus();
         } else {
-            //dialog不用设置title
+            //换出progressdialog，登录成功后，progressdialog消失
             final ProgressDialog pd = ProgressDialog.show(LoginActivity.this, null, getResources().getString(R.string.dialog_login_process));
             LoginAction loginAction = new LoginAction(username, password, XGPushConfig.getToken(getApplicationContext()), MD5Utils.md5(username + password + XGPushConfig.getToken(getApplicationContext()) + Config.sKey),
                     new LoginAction.LoginSuccessCallback() {
@@ -216,51 +186,11 @@ public class LoginActivity extends ActionBarActivity implements LoaderManager.Lo
             );
         }
     }
-//    private boolean isEmailValid(String email) {
-//        //TODO: Replace this with your own logic
-//        return email.contains("@");
-//    }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
-
-//    /**
-//     * Shows the progress UI and hides the login form.
-//     */
-//    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-//    public void showProgress(final boolean show) {
-//        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-//        // for very easy animations. If available, use these APIs to fade-in
-//        // the progress spinner.
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-//            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-//
-//            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-//                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-//                @Override
-//                public void onAnimationEnd(Animator animation) {
-//                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//                }
-//            });
-//
-//            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-//            mProgressView.animate().setDuration(shortAnimTime).alpha(
-//                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-//                @Override
-//                public void onAnimationEnd(Animator animation) {
-//                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-//                }
-//            });
-//        } else {
-//            // The ViewPropertyAnimator APIs are not available, so simply show
-//            // and hide the relevant UI components.
-//            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-//            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//        }
-//    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -302,7 +232,7 @@ public class LoginActivity extends ActionBarActivity implements LoaderManager.Lo
                 new ArrayAdapter<String>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        mUserNameView.setAdapter(adapter);
     }
 
 
