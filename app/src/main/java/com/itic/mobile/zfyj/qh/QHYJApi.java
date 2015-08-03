@@ -10,7 +10,4 @@ public class QHYJApi {
     public static final String ldhdapModify = "/LdhdapAppModify";
     public static final String ldhdap = "/ldhdapApp";
     public static final String ldhdapAdd = "/ldhdapAddApp";
-
-//    public static final String LoginInterfaceService = Config.SERVER_HOST + "/Android/login";
-//    public static final String GetTXL = "/Android/getTxl";
 }

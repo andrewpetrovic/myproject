@@ -13,8 +13,6 @@ public class Config {
 
     public static final String ACCOUNT_TYPE = "com.itic.mobile.zfyj.qh.account";
     public static final String SERVER_HOST = "http://211.101.150.10:8881/qhyj";
-//    public static final String SERVER_HOST = "http://192.168.2.102/MyBlog/home";
-//    public static final String SERVER_HOST = "http://192.168.1.133:8080/qhyj";
 
 
     //通用
