@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.itic.mobile.R;
 
 /**
- * Created by JEEKR on 2015/2/2.
+ * Android 5.0 APIs Helper 类
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class LUtils {
