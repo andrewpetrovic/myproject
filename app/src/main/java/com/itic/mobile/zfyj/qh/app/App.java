@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.itic.mobile.app.BaseApp;
 import com.itic.mobile.zfyj.qh.Config;
-import com.itic.mobile.volley.VolleyUtil;
+import com.itic.mobile.util.volley.VolleyUtil;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
