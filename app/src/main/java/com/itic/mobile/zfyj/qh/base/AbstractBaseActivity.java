@@ -881,7 +881,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(PrefUtils.PREF_ATTENDEE_AT_VENUE)) {
+        if (key.equals(PrefUtils.PREF_INVALIDATE_OPTION_MENU)) {
             populateNavDrawer();
             invalidateOptionsMenu();
         }
