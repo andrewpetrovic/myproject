@@ -6,10 +6,7 @@ import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.provider.BaseColumns;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -24,7 +21,6 @@ import java.util.Set;
 
 /**
  * ContentProvider
- *
  * @author Andrea Ji
  */
 public class Provider extends ContentProvider {
@@ -188,10 +184,10 @@ public class Provider extends ContentProvider {
                                 telHomeUnionSubQueryString,
                                 orgNameUnionSubQueryString},
                         sortOrder,null);
-                Cursor cursor = unionQueryBuilder.buildUnionQuery(db,sql,
+                Cursor cursor = unionQueryBuilder.unionQuery(db, sql,
                         new String[]{
-                        searchKey,searchKey,searchKey,searchKey,searchKey
-                });
+                                searchKey, searchKey, searchKey, searchKey, searchKey
+                        });
                 Context context = getContext();
                 if (null != context) {
                     cursor.setNotificationUri(context.getContentResolver(), uri);
@@ -359,10 +355,7 @@ public class Provider extends ContentProvider {
     }
 
     private void notifyChange(Uri uri) {
-        // We only notify changes if the caller is not the sync adapter.
-        // The sync adapter has the responsibility of notifying changes (it can do so
-        // more intelligently than we can -- for example, doing it only once at the end
-        // of the sync instead of issuing thousands of notifications for each record).
+        // 当不通过sync adapter变更的数据时，通过uri通知相关UI重新load数据
         if (!Contract.hasCallerIsSyncAdapterParameter(uri)) {
             Context context = getContext();
             context.getContentResolver().notifyChange(uri, null);
@@ -426,12 +419,6 @@ public class Provider extends ContentProvider {
             }
             case JOBS:{
                 return builder.table(Database.Tables.JOBS);
-//                String dateFilter = uri.getQueryParameter(Contract.Jobs.QUERY_PARAMETER_DATE_FILTER);
-//                builder.table(Database.Tables.JOBS);
-//                if (!TextUtils.isEmpty(dateFilter)){
-//                    addDateFilter(builder,dateFilter,uri);
-//                }
-//                return builder;
             }
             case JOBS_ID:{
                 String jobId = Contract.Jobs.getJobId(uri);
@@ -448,7 +435,7 @@ public class Provider extends ContentProvider {
     }
 
     private void deleteDatabase() {
-        // TODO: wait for content provider operations to finish, then tear down
+        // 等待content provider option 完成，然后删除数据库
         mOpenHelper.close();
         Context context = getContext();
         Database.delectDatabase(context);
