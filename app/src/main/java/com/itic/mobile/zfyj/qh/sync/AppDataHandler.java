@@ -99,7 +99,7 @@ public class AppDataHandler {
             throw new RuntimeException("Error executing content provider batch operation", ex);
         }
 
-        // notify all top-level paths
+        // 通知顶级路径
         Log.d(TAG, "Notifying changes on all top-level paths on Content Resolver.");
         ContentResolver resolver = mContext.getContentResolver();
         for (String path : Contract.TOP_LEVEL_PATHS) {
