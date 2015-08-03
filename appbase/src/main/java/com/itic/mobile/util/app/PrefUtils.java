@@ -74,7 +74,7 @@ public class PrefUtils  {
     public static TimeZone getDisplayTimeZone(Context context) {
         TimeZone defaultTz = TimeZone.getDefault();
         return (isUsingLocalTime(context) && defaultTz != null)
-                ? defaultTz : Config.CONFERENCE_TIMEZONE;
+                ? defaultTz : Config.DEFAULT_TIMEZONE;
     }
 
     public static boolean isUsingLocalTime(Context context) {

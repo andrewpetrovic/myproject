@@ -126,21 +126,6 @@ public class TimeUtils {
         return format.format(time);
     }
 
-    public static boolean hasConferenceStarted(final Context context) {
-        long now = DateTimeUtils.getCurrentTime(context);
-        return now >= Config.CONFERENCE_START_MILLIS;
-    }
-
-    public static boolean hasConferenceEnded(final Context context) {
-        long now = DateTimeUtils.getCurrentTime(context);
-        return now > Config.CONFERENCE_END_MILLIS;
-    }
-
-    public static boolean isConferenceInProgress(final Context context) {
-        long now = DateTimeUtils.getCurrentTime(context);
-        return now >= Config.CONFERENCE_START_MILLIS && now <= Config.CONFERENCE_END_MILLIS;
-    }
-
     /**
      * Returns "Today", "Tomorrow", "Yesterday", or a short date format.
      */
