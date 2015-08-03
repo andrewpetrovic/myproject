@@ -66,13 +66,13 @@ import static com.itic.mobile.util.logcat.LogUtils.LOGE;
 import static com.itic.mobile.util.logcat.LogUtils.makeLogTag;
 
 /**
- * An assortment of UI helpers.
+ * UI helpers.
  */
 public class UIUtils {
     private static final String TAG = makeLogTag(UIUtils.class);
 
     public static final String TARGET_FORM_FACTOR_ACTIVITY_METADATA =
-            "com.google.samples.apps.iosched.meta.TARGET_FORM_FACTOR";
+            "com.itic.mobile.meta.TARGET_FORM_FACTOR";
 
     public static final String TARGET_FORM_FACTOR_HANDSET = "handset";
     public static final String TARGET_FORM_FACTOR_TABLET = "tablet";
@@ -90,19 +90,6 @@ public class UIUtils {
      * semicolon. (Example: &amp;amp;)
      */
     private static final Pattern REGEX_HTML_ESCAPE = Pattern.compile(".*&\\S;.*");
-
-    private static CharSequence sNowPlayingText;
-    private static CharSequence sLivestreamNowText;
-    private static CharSequence sLivestreamAvailableText;
-
-    public static final String GOOGLE_PLUS_PACKAGE_NAME = "com.google.android.apps.plus";
-    public static final String YOUTUBE_PACKAGE_NAME = "com.google.android.youtube";
-
-    public static final int ANIMATION_FADE_IN_TIME = 250;
-    public static final String TRACK_ICONS_TAG = "tracks";
-
-    private static SimpleDateFormat sDayOfWeekFormat = new SimpleDateFormat("E");
-    private static DateFormat sShortTimeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
 
     /**
      * Format and return the given time interval using {@link com.itic.mobile.Config#CONFERENCE_TIMEZONE}
@@ -211,7 +198,8 @@ public class UIUtils {
      * <p/>
      * <a href="http://stackoverflow.com/questions/13202805">Original code</a> by Dandre Allison.
      *
-     * @param context the current context of the device
+     * 根据当前设备类型判断Acivity是否按照平版模式运行（即小窗模式）
+     * @param text the current context of the device
      *
      * @see #isHoneycombTablet(android.content.Context)
      */
@@ -258,6 +246,7 @@ public class UIUtils {
 
     /**
      * Calculates the Action Bar height in pixels.
+     * 计算ActionBar高度
      */
     public static int calculateActionBarSize(Context context) {
         if (context == null) {
@@ -325,4 +314,3 @@ public class UIUtils {
         return (value - min) / (float) (max - min);
     }
 }
-
