@@ -71,20 +71,6 @@ import static com.itic.mobile.util.logcat.LogUtils.makeLogTag;
 public class UIUtils {
     private static final String TAG = makeLogTag(UIUtils.class);
 
-    public static final long SECOND_MILLIS = 1000;
-    public static final long MINUTE_MILLIS = 60 * SECOND_MILLIS;
-    public static final long HOUR_MILLIS = 60 * MINUTE_MILLIS;
-    public static final long DAY_MILLIS = 24 * HOUR_MILLIS;
-
-    /**
-     * Factor applied to session color to derive the background color on panels and when
-     * a session photo could not be downloaded (or while it is being downloaded)
-     */
-    public static final float SESSION_BG_COLOR_SCALE_FACTOR = 0.75f;
-
-    private static final float SESSION_PHOTO_SCRIM_ALPHA = 0.25f; // 0=invisible, 1=visible image
-    private static final float SESSION_PHOTO_SCRIM_SATURATION = 0.2f; // 0=gray, 1=color image
-
     public static final String TARGET_FORM_FACTOR_ACTIVITY_METADATA =
             "com.google.samples.apps.iosched.meta.TARGET_FORM_FACTOR";
 
@@ -162,22 +148,6 @@ public class UIUtils {
         }
     }
 
-    public static String getLiveBadgeText(final Context context, long start, long end) {
-        long now = getCurrentTime(context);
-
-        if (now < start) {
-            // Will be live later
-            return context.getString(R.string.live_available);
-        } else if (start <= now && now <= end) {
-            // Live right now!
-            // Indicated by a visual live now badge
-            return "";
-        } else {
-            // Too late.
-            return "";
-        }
-    }
-
     /**
      * Given a snippet string with matching segments surrounded by curly
      * braces, turn those areas into bold spans, removing the curly braces.
@@ -216,22 +186,6 @@ public class UIUtils {
         }
     }
 
-    public static String getSessionHashtagsString(String hashtags) {
-        if (!TextUtils.isEmpty(hashtags)) {
-            if (!hashtags.startsWith("#")) {
-                hashtags = "#" + hashtags;
-            }
-
-            if (hashtags.contains(Config.CONFERENCE_HASHTAG_PREFIX)) {
-                return hashtags;
-            }
-
-            return Config.CONFERENCE_HASHTAG + " " + hashtags;
-        } else {
-            return Config.CONFERENCE_HASHTAG;
-        }
-    }
-
     private static final int BRIGHTNESS_THRESHOLD = 130;
 
     /**
@@ -248,59 +202,6 @@ public class UIUtils {
 
     public static boolean isTablet(Context context) {
         return context.getResources().getConfiguration().smallestScreenWidthDp >= 600;
-    }
-
-    // Whether a feedback notification was fired for a particular session. In the event that a
-    // feedback notification has not been fired yet, return false and set the bit.
-    public static boolean isFeedbackNotificationFiredForSession(Context context, String sessionId) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = String.format("feedback_notification_fired_%s", sessionId);
-        boolean fired = sp.getBoolean(key, false);
-        sp.edit().putBoolean(key, true).commit();
-        return fired;
-    }
-
-    // Clear the flag that says a notification was fired for the given session.
-    // Typically used to debug notifications.
-    public static void unmarkFeedbackNotificationFiredForSession(Context context, String sessionId) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = String.format("feedback_notification_fired_%s", sessionId);
-        sp.edit().putBoolean(key, false).commit();
-    }
-
-    // Shows whether a notification was fired for a particular session time block. In the
-    // event that notification has not been fired yet, return false and set the bit.
-    public static boolean isNotificationFiredForBlock(Context context, String blockId) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = String.format("notification_fired_%s", blockId);
-        boolean fired = sp.getBoolean(key, false);
-        sp.edit().putBoolean(key, true).commit();
-        return fired;
-    }
-
-    private static final long sAppLoadTime = System.currentTimeMillis();
-
-    public static long getCurrentTime(final Context context) {
-        if (BuildConfig.DEBUG) {
-            return context.getSharedPreferences("mock_data", Context.MODE_PRIVATE)
-                    .getLong("mock_current_time", System.currentTimeMillis())
-                    + System.currentTimeMillis() - sAppLoadTime;
-//            return ParserUtils.parseTime("2012-06-27T09:44:45.000-07:00")
-//                    + System.currentTimeMillis() - sAppLoadTime;
-        } else {
-            return System.currentTimeMillis();
-        }
-    }
-
-    //获取明天正0点时间
-    public static long getNextDayTime(){
-        Calendar calendar = Calendar.getInstance();
-        return DateTimeUtils.dateToLang(new CalendarDay(calendar.getTime()).getDate()) + 86400000;
-    }
-
-    public static boolean shouldShowLiveSessionsOnly(final Context context) {
-        return !PrefUtils.isAttendeeAtVenue(context)
-                && getCurrentTime(context) < Config.CONFERENCE_END_MILLIS;
     }
 
     /**
@@ -389,20 +290,6 @@ public class UIUtils {
                 Math.round(Color.blue(color) * factor));
     }
 
-    public static int scaleSessionColorToDefaultBG(int color) {
-        return scaleColor(color, SESSION_BG_COLOR_SCALE_FACTOR, false);
-    }
-
-    public static void showHashtagStream(final Context context, String hashTag) {
-        final String hashTagsString = getSessionHashtagsString(hashTag);
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
-                "https://plus.google.com/s/"
-                        + hashTagsString.replaceAll(" ", "%20").replaceAll("#", "%23")));
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        preferPackageForIntent(context, intent, UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
-        context.startActivity(intent);
-    }
-
     public static void setStartPadding(final Context context, View view, int padding) {
         if (isRtl(context)) {
             view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), padding, view.getPaddingBottom());
@@ -436,18 +323,6 @@ public class UIUtils {
         }
 
         return (value - min) / (float) (max - min);
-    }
-
-    // Desaturates and color-scrims the image
-    public static ColorFilter makeSessionImageScrimColorFilter(int sessionColor) {
-        float a = SESSION_PHOTO_SCRIM_ALPHA;
-        float sat = SESSION_PHOTO_SCRIM_SATURATION; // saturation (0=gray, 1=color)
-        return new ColorMatrixColorFilter(new float[]{
-                ((1 - 0.213f) * sat + 0.213f) * a, ((0 - 0.715f) * sat + 0.715f) * a, ((0 - 0.072f) * sat + 0.072f) * a, 0, Color.red(sessionColor) * (1 - a),
-                ((0 - 0.213f) * sat + 0.213f) * a, ((1 - 0.715f) * sat + 0.715f) * a, ((0 - 0.072f) * sat + 0.072f) * a, 0, Color.green(sessionColor) * (1 - a),
-                ((0 - 0.213f) * sat + 0.213f) * a, ((0 - 0.715f) * sat + 0.715f) * a, ((1 - 0.072f) * sat + 0.072f) * a, 0, Color.blue(sessionColor) * (1 - a),
-                0, 0, 0, 0, 255
-        });
     }
 }
 

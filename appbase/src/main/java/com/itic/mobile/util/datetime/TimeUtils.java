@@ -43,7 +43,7 @@ public class TimeUtils {
             time *= 1000;
         }
 
-        long now = UIUtils.getCurrentTime(ctx);
+        long now = DateTimeUtils.getCurrentTime(ctx);
         if (time > now || time <= 0) {
             return null;
         }
@@ -127,17 +127,17 @@ public class TimeUtils {
     }
 
     public static boolean hasConferenceStarted(final Context context) {
-        long now = UIUtils.getCurrentTime(context);
+        long now = DateTimeUtils.getCurrentTime(context);
         return now >= Config.CONFERENCE_START_MILLIS;
     }
 
     public static boolean hasConferenceEnded(final Context context) {
-        long now = UIUtils.getCurrentTime(context);
+        long now = DateTimeUtils.getCurrentTime(context);
         return now > Config.CONFERENCE_END_MILLIS;
     }
 
     public static boolean isConferenceInProgress(final Context context) {
-        long now = UIUtils.getCurrentTime(context);
+        long now = DateTimeUtils.getCurrentTime(context);
         return now >= Config.CONFERENCE_START_MILLIS && now <= Config.CONFERENCE_END_MILLIS;
     }
 
@@ -146,7 +146,7 @@ public class TimeUtils {
      */
     public static String formatHumanFriendlyShortDate(final Context context, long timestamp) {
         long localTimestamp, localTime;
-        long now = UIUtils.getCurrentTime(context);
+        long now = DateTimeUtils.getCurrentTime(context);
 
         TimeZone tz = PrefUtils.getDisplayTimeZone(context);
         localTimestamp = timestamp + tz.getOffset(timestamp);

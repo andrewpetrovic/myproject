@@ -199,13 +199,13 @@ public class SyncHelper {
     }
 
     public static long calculateRecommendedSyncInterval(final Context context) {
-        long now = UIUtils.getCurrentTime(context);
-        long tomorrow = UIUtils.getNextDayTime();
+        long now = DateTimeUtils.getCurrentTime(context);
+        long tomorrow = DateTimeUtils.getNextDayTime();
         //如果同步时间早于19点，则当天19点时再发起同步，否则明天同一时间同步
-        if (tomorrow - now < (UIUtils.HOUR_MILLIS * 6)) {
-            return UIUtils.DAY_MILLIS;
+        if (tomorrow - now < (DateTimeUtils.HOUR_MILLIS * 6)) {
+            return DateTimeUtils.DAY_MILLIS;
         } else {
-            return (tomorrow - now - (UIUtils.HOUR_MILLIS * 6));
+            return (tomorrow - now - (DateTimeUtils.HOUR_MILLIS * 6));
         }
     }
 

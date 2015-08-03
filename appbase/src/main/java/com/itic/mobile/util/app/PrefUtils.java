@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import com.itic.mobile.Config;
+import com.itic.mobile.util.datetime.DateTimeUtils;
 import com.itic.mobile.util.datetime.TimeUtils;
 import com.itic.mobile.util.ui.UIUtils;
 
@@ -258,7 +259,7 @@ public class PrefUtils  {
 
     public static void markSyncAttemptedNow(final Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().putLong(PREF_LAST_SYNC_ATTEMPTED, UIUtils.getCurrentTime(context)).commit();
+        sp.edit().putLong(PREF_LAST_SYNC_ATTEMPTED, DateTimeUtils.getCurrentTime(context)).commit();
     }
 
     public static long getLastSyncSucceededTime(final Context context) {
@@ -268,7 +269,7 @@ public class PrefUtils  {
 
     public static void markSyncSucceededNow(final Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().putLong(PREF_LAST_SYNC_SUCCEEDED, UIUtils.getCurrentTime(context)).commit();
+        sp.edit().putLong(PREF_LAST_SYNC_SUCCEEDED, DateTimeUtils.getCurrentTime(context)).commit();
     }
 
     /**
