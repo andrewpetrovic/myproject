@@ -51,7 +51,6 @@ import com.itic.mobile.Config;
 import com.itic.mobile.R;
 import com.itic.mobile.util.app.PrefUtils;
 import com.itic.mobile.util.datetime.DateTimeUtils;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

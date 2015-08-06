@@ -62,4 +62,5 @@ dependencies {
     compile project(':appbase')
     compile project(':txpushlib')
     compile project(':indexbar')
+    compile project(':materialcalendarview')
 }
