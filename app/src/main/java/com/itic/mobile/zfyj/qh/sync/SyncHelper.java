@@ -3,24 +3,19 @@ package com.itic.mobile.zfyj.qh.sync;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SyncResult;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.itic.mobile.accounts.AccountUtils;
 import com.itic.mobile.util.app.PrefUtils;
 import com.itic.mobile.util.datetime.DateTimeUtils;
 import com.itic.mobile.util.string.MD5Utils;
-import com.itic.mobile.util.ui.UIUtils;
 import com.itic.mobile.zfyj.qh.Config;
 import com.itic.mobile.zfyj.qh.QHYJApi;
+import com.itic.mobile.zfyj.qh.base.AppDataHandler;
 import com.itic.mobile.zfyj.qh.login.model.LoginModel;
 import com.itic.mobile.zfyj.qh.provider.Contract;
 

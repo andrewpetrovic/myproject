@@ -35,7 +35,7 @@ import com.itic.mobile.zfyj.qh.R;
 import com.itic.mobile.zfyj.qh.base.BaseActivityImpl;
 import com.itic.mobile.zfyj.qh.jobs.model.Job;
 import com.itic.mobile.zfyj.qh.provider.Contract;
-import com.itic.mobile.zfyj.qh.sync.AppDataHandler;
+import com.itic.mobile.zfyj.qh.base.AppDataHandler;
 import com.itic.mobile.zfyj.qh.base.HttpRequest;
 import com.itic.mobile.util.volley.VolleyUtil;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
