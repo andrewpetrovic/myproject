@@ -266,7 +266,7 @@ public class BaseActivityImpl extends AbstractBaseActivity implements Callback{
         createNavDrawerItems();
     }
 
-    //这里是所有一级界面的入口
+    //主菜单点击事件
     @Override
     protected void goToNavDrawerItem(int item) {
         Intent intent;

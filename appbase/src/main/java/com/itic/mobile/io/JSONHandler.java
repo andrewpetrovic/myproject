@@ -16,11 +16,6 @@ import java.util.ArrayList;
 
 /**
  * JSON handler
- * @author Andrea Ji
- * 变更历史:
- * 提交日期  姓名  主线版本  修改原因
- * ---------------------------------------------------------*
- * 2015-02-09  Andrea Ji v1.0.0  第一次提交
  */
 public abstract class JSONHandler {
 
