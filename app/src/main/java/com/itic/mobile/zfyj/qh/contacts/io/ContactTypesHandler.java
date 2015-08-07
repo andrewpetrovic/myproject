@@ -2,12 +2,11 @@ package com.itic.mobile.zfyj.qh.contacts.io;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.itic.mobile.io.JSONHandler;
+import com.itic.mobile.util.database.JSONHandler;
 import com.itic.mobile.zfyj.qh.contacts.model.ContactType;
 import com.itic.mobile.zfyj.qh.provider.Contract;
 

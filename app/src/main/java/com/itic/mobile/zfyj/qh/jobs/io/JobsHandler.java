@@ -2,20 +2,16 @@ package com.itic.mobile.zfyj.qh.jobs.io;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
-import android.provider.BaseColumns;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.itic.mobile.io.JSONHandler;
+import com.itic.mobile.util.database.JSONHandler;
 import com.itic.mobile.zfyj.qh.jobs.model.Job;
 import com.itic.mobile.zfyj.qh.provider.Contract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * JobsHandler

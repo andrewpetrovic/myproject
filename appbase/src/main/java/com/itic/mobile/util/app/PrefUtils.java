@@ -14,7 +14,7 @@ import static com.itic.mobile.util.logcat.LogUtils.LOGD;
 import static com.itic.mobile.util.logcat.LogUtils.makeLogTag;
 
 /**
- * SharedPreference相关的工具类和常量.
+ * App设置开关相关的工具类.
  */
 public class PrefUtils  {
     private static final String TAG = makeLogTag("PrefUtils");

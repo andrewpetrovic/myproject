@@ -18,11 +18,13 @@ package com.itic.mobile.util.string;
 
 import android.text.format.Time;
 
+import com.itic.mobile.util.database.JSONHandler;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
- * Various utility methods used by {@link com.itic.mobile.io.JSONHandler}.
+ * Various utility methods used by {@link JSONHandler}.
  */
 public class ParserUtils {
     /** Used to sanitize a string to be {@link android.net.Uri} safe. */

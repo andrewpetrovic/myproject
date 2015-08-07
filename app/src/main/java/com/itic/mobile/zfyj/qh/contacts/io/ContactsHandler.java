@@ -3,15 +3,13 @@ package com.itic.mobile.zfyj.qh.contacts.io;
 import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.itic.mobile.io.JSONHandler;
+import com.itic.mobile.util.database.JSONHandler;
 import com.itic.mobile.zfyj.qh.Config;
 import com.itic.mobile.zfyj.qh.R;
 import com.itic.mobile.zfyj.qh.contacts.model.Contact;

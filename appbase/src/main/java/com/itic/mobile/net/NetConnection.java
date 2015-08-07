@@ -16,6 +16,7 @@ import java.net.URLConnection;
 /**
  * Created by andrew on 2014/8/19.
  */
+@Deprecated
 public class NetConnection {
 
     /**

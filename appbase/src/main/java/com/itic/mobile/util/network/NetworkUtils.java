@@ -43,22 +43,5 @@ public class NetworkUtils {
 		}
 		return isConnected;
 	}
-	
-	/**
-	 * 
-	 * @param responseBody
-	 * @return str 将responseBody解析成为 str，如果不能使用UTF-8编码解析，则返回90，代表解析错误
-	 */
-	public static String parseResponseBody(byte[] responseBody){
-		String str = null;
-		try {
-			str = new String(responseBody,"UTF-8");
-			Log.i(TAG, "str:" + str);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			str = "{\"resCode\":90}";
-		}
-		return str;
-	}
+
 }

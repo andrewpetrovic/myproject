@@ -6,7 +6,7 @@ import com.itic.mobile.BuildConfig;
 import com.itic.mobile.Config;
 
 /**
- * LogUtils
+ * LogUtils,仅对打印日志进行简单封装
  */
 public class LogUtils {
     private static final String LOG_PREFIX = "itic_";

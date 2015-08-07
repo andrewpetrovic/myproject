@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.os.Handler;
 
 /**
- * 通过Handler对ContentObserver，使其在大量数据变动的时候，尽量保证1秒钟向UI线程通知一次的频率。
+ * 限制ContentObserver被系统回调的次数，使其在大量数据变动的时候，尽量保证1秒钟向UI线程通知一次的频率。
  */
 public class ThrottledContentObserver extends ContentObserver {
     Handler mMyHandler;

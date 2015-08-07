@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import com.itic.mobile.io.JSONHandler;
+import com.itic.mobile.util.database.JSONHandler;
 import com.itic.mobile.zfyj.qh.contacts.io.ContactTypesHandler;
 import com.itic.mobile.zfyj.qh.contacts.io.ContactsHandler;
 import com.itic.mobile.zfyj.qh.jobs.io.JobsHandler;
