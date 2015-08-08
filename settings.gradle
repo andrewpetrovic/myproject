@@ -1,1 +1,1 @@
-include ':app',':slidinglayer', ':volley', ':org.eclipse.paho.android.service', ':appbase', ':txpushlib', ':materialcalendarview', ':indexbar'
+include ':app',':slidinglayer', ':volley', ':appbase', ':txpushlib', ':materialcalendarview', ':indexbar'
