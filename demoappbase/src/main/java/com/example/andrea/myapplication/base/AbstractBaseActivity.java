@@ -170,20 +170,6 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     /**
      * 手动同步
      */
-//    protected void requestDataRefresh() {
-//        Account activeAccount = getActiveAccount();
-//        ContentResolver contentResolver = getContentResolver();
-//        if (contentResolver.isSyncActive(activeAccount, Contract.CONTENT_AUTHORITY)) {
-//            Log.d(TAG, "Ignoring manual sync request because a sync is already in progress.");
-//            return;
-//        }
-//        mManualSyncRequest = true;
-//        Log.d(TAG, "Requesting manual data refresh.");
-//        //在这里执行手动同步
-//    }
-    /**
-     * 手动同步
-     */
     protected abstract void requestDataRefresh();
 
     protected void setProgressBarTopWhenActionBarShown(int progressBarTopWhenActionBarShown) {
@@ -356,9 +342,7 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         final View chosenAccountView = findViewById(R.id.chosen_account_view);
         Account chosenAccount = getActiveAccount();
         if (chosenAccount == null) {
-            // No account logged in; hide account box
-            chosenAccountView.setVisibility(View.GONE);
-            mAccountListContainer.setVisibility(View.GONE);
+            // No account logged in;
             return;
         } else {
             chosenAccountView.setVisibility(View.VISIBLE);
@@ -544,12 +528,6 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-
-//        // Watch for sync state changes
-//        mSyncStatusObserver.onStatusChanged(0);
-//        final int mask = ContentResolver.SYNC_OBSERVER_TYPE_PENDING |
-//                ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE;
-//        mSyncObserverHandle = ContentResolver.addStatusChangeListener(mask, mSyncStatusObserver);
     }
 
     /**
@@ -779,37 +757,6 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         sp.unregisterOnSharedPreferenceChangeListener(this);
     }
 
-//    private SyncStatusObserver mSyncStatusObserver = new SyncStatusObserver() {
-//        @Override
-//        public void onStatusChanged(int which) {
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    String accountName = AccountUtils.getActiveAccountName(AbstractBaseActivity.this);
-//                    if (TextUtils.isEmpty(accountName)) {
-//                        onRefreshingStateChanged(false);
-//                        mManualSyncRequest = false;
-//                        return;
-//                    }
-//
-//                    Account account = new Account(accountName, Config.ACCOUNT_TYPE);
-//                    boolean syncActive = ContentResolver.isSyncActive(
-//                            account, Contract.CONTENT_AUTHORITY);
-//                    boolean syncPending = ContentResolver.isSyncPending(
-//                            account, Contract.CONTENT_AUTHORITY);
-//                    if (!syncActive && !syncPending) {
-//                        mManualSyncRequest = false;
-//                    }
-//                    Log.i("onRefreshing","syncActive = " + Boolean.toString(syncActive));
-//                    Log.i("onRefreshing","syncPending = " + Boolean.toString(syncPending));
-//                    Log.i("onRefreshing","mManualSyncRequest = " + Boolean.toString(mManualSyncRequest));
-//                    Log.i("onRefreshing","refreshing state = " + Boolean.toString(syncActive || (mManualSyncRequest && syncPending)));
-//                    onRefreshingStateChanged(syncActive || (mManualSyncRequest && syncPending));
-//                }
-//            });
-//        }
-//    };
-
     protected void onRefreshingStateChanged(boolean refreshing) {
         if (mSwipeRefreshLayout != null) {
             mSwipeRefreshLayout.setRefreshing(refreshing);
@@ -979,5 +926,4 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
     public boolean canSwipeRefreshChildScrollUp() {
         return false;
     }
-
 }
