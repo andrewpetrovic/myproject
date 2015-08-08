@@ -323,7 +323,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         }
     }
 
-    //获取账号类型
+    /**
+     * 获取账号类型
+     */
     protected abstract String getAccountType();
 
     @Override
@@ -505,6 +507,10 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 主菜单点击事件
+     * @param item
+     */
     protected abstract void goToNavDrawerItem(int item);
 
     /**
@@ -616,6 +622,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         return accounts[0].name;
     }
 
+    /**
+     * 登录逻辑
+     */
     protected abstract void startLoginProcess();
 
     /**
@@ -734,6 +743,10 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         return view;
     }
 
+    /**
+     * 点击侧滑菜单item时，默认执行onNavDrawerItemClicked中if isSpecialItem else部分定义的切换动画
+     * 如果不需要执行这个切换动画，实现此方法定义那个特殊的item
+     */
     protected abstract boolean isSpecialItem(int itemId);
 
     protected boolean isSeparator(int itemId) {
@@ -881,6 +894,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         return AccountUtils.getActiveAccount(this, getAccountType());
     }
 
+    /**
+     * 填充当前活动帐号信息
+     */
     protected abstract void populateActiveAccount(Account account);
 
     @Override
@@ -905,6 +921,9 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         }
     }
 
+    /**
+     * 填充测滑菜单
+     */
     protected abstract void populateNavDrawer();
 
     @Override
@@ -932,8 +951,14 @@ public abstract class AbstractBaseActivity extends ActionBarActivity implements
         }
     }
 
+    /**
+     * BaseActivity调用此方法获得icon id
+     */
     protected abstract int getDrawerItemIconID(int itemID);
 
+    /**
+     * BaseActivity调用此方法获得Title
+     */
     protected abstract int getDrawerItemTitleID(int itemID);
 
     /**
