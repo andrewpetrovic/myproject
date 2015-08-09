@@ -10,9 +10,6 @@ import com.example.andrea.myapplication.MainActivity4;
 import com.example.andrea.myapplication.MainActivity5;
 import com.example.andrea.myapplication.R;
 
-/**
- * Created by andrea on 2015/8/8.
- */
 public class BaseActivityImpl extends AbstractBaseActivity {
 
     protected static final int NAVDRAWER_ITEM_1 = 0;
