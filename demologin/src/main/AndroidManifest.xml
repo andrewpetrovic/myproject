@@ -16,6 +16,18 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.demo" >
+
+        <!-- 新增帐号是调用这个service -->
+        <service android:name="com.itic.mobile.accounts.AccountAuthenticatorService" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenicator" />
+        </service>
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
