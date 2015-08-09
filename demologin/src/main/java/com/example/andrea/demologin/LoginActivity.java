@@ -1,12 +1,16 @@
 package com.example.andrea.demologin;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,6 +29,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.itic.mobile.accounts.AccountUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -285,7 +291,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(false);
 
             if (success) {
+                createSyncAccount(getApplicationContext(),mEmail,mPassword);
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 finish();
+
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -296,6 +305,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+    }
+
+    private void createSyncAccount(Context context, String username, String password){
+        Account account = AccountUtils.GetAccount(Config.ACCOUNT_TYPE,username);
+        AccountManager accountManager = (AccountManager)context.getSystemService(Context.ACCOUNT_SERVICE);
+        if (accountManager.addAccountExplicitly(account,password,null)){
+            AccountUtils.setActiveAccount(context,username);
         }
     }
 }
