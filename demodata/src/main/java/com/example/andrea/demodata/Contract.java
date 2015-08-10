@@ -34,5 +34,8 @@ public class Contract {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_CONTACTS).build();
 
+        public static Uri buildContactUri(String contactId) {
+            return CONTENT_URI.buildUpon().appendPath(contactId).build();
+        }
     }
 }

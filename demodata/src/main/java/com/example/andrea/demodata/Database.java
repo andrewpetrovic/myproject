@@ -52,4 +52,8 @@ public class Database extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    public static void delectDatabase(Context context){
+        context.deleteDatabase(DATABASE_NAME);
+    }
 }
