@@ -32,6 +32,10 @@ public abstract class AppDataHandler {
 
     private static final String SP_KEY_DATA_TIMESTAMP = "data_timestamp";
 
+//    private static final String DATA_KEY_CONTACT_TYPES = "contact_types";
+//    private static final String DATA_KEY_CONTACTS = "contacts";
+//    private static final String DATA_KEY_JOBS = "jobs";
+
     Context mContext = null;
 
     protected HashMap<String, JSONHandler> mHandlerForKey = new HashMap<String, JSONHandler>();
@@ -59,7 +63,7 @@ public abstract class AppDataHandler {
         mTopLevelPath = Arrays.asList(paths);
     }
 
-    public void applyConferenceData(String[] dataBodies, String dataTimestamp, boolean downloadsAllowed) throws IOException {
+    public void applyData(String[] dataBodies, String dataTimestamp, boolean downloadsAllowed) throws IOException {
         Log.i(TAG, "Applying data from " + dataBodies.length + " files");
 
         // 为每一个数据类型创建handler

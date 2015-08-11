@@ -65,7 +65,7 @@ public abstract class AppDataHandler {
         mTopLevelPath = Arrays.asList(paths);
     }
 
-    public void applyConferenceData(String[] dataBodies, String dataTimestamp, boolean downloadsAllowed) throws IOException {
+    public void applyData(String[] dataBodies, String dataTimestamp, boolean downloadsAllowed) throws IOException {
         Log.i(TAG, "Applying data from " + dataBodies.length + " files");
 
         // 为每一个数据类型创建handler

@@ -3,9 +3,6 @@ package com.example.andrea.demodata;
 import android.content.Context;
 import android.net.Uri;
 
-/**
- * Created by andrea on 2015/8/10.
- */
 public class AppDataHandlerImpl extends AppDataHandler {
 
     private ContactHandler mContactHandler;

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.util.Log;
@@ -63,7 +62,7 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
                         try {
                             String bootstrapJson = JSONHandler.parseResource(getApplicationContext(), R.raw.bootstrap_data);
                             AppDataHandlerImpl dataHandler = new AppDataHandlerImpl(getApplicationContext());
-                            dataHandler.applyConferenceData(new String[]{bootstrapJson}, Long.toString(DateTimeUtils.stringToDateTime("2015-02-09 00:00:00")), false);
+                            dataHandler.applyData(new String[]{bootstrapJson}, Long.toString(DateTimeUtils.stringToDateTime("2015-02-09 00:00:00")), false);
                             Log.i(TAG, "End of bootstrap -- successful. Marking boostrap as done.");
                             PrefUtils.markDataBootstrapDone(getApplicationContext());
                         } catch (IOException e) {
