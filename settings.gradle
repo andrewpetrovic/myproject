@@ -1,1 +1,1 @@
-include ':app', ':slidinglayer', ':volley', ':appbase', ':txpushlib', ':materialcalendarview', ':indexbar', ':demologin', 'demoTheme'
+include ':app', ':slidinglayer', ':volley', ':appbase', ':txpushlib', ':materialcalendarview', ':indexbar', ':demologin', ':demodata', 'demoTheme'
