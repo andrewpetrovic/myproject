@@ -1,5 +1,3 @@
-package com.itic.mobile.zfyj.qh.base;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -12,25 +10,21 @@ import android.util.Log;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.itic.mobile.util.database.JSONHandler;
-import com.itic.mobile.zfyj.qh.contacts.io.ContactTypesHandler;
-import com.itic.mobile.zfyj.qh.contacts.io.ContactsHandler;
-import com.itic.mobile.zfyj.qh.jobs.io.JobsHandler;
-import com.itic.mobile.zfyj.qh.provider.Contract;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 从json文件中解析数据并批量存储
+ *
  * @author Andrea Ji
  */
-public class AppDataHandler {
-
-    ContactTypesHandler mContactTypesHandler = null;
-    ContactsHandler mContactsHandler = null;
-    JobsHandler mJobsHandler = null;
+public abstract class AppDataHandler {
 
     private static final String TAG = "AppDataHandler";
 
@@ -38,33 +32,38 @@ public class AppDataHandler {
 
     private static final String SP_KEY_DATA_TIMESTAMP = "data_timestamp";
 
-    private static final String DATA_KEY_CONTACT_TYPES = "contact_types";
-    private static final String DATA_KEY_CONTACTS = "contacts";
-    private static final String DATA_KEY_JOBS = "jobs";
-
     Context mContext = null;
 
-    HashMap<String, JSONHandler> mHandlerForKey = new HashMap<String, JSONHandler>();
+    protected HashMap<String, JSONHandler> mHandlerForKey = new HashMap<String, JSONHandler>();
+    protected List<String> mTopLevelPath;
 
     private int mContentProviderOperationsDone = 0;
 
-    private static final String[] DATA_KEYS_IN_ORDER = {
-            DATA_KEY_CONTACT_TYPES,
-            DATA_KEY_CONTACTS,
-            DATA_KEY_JOBS,
-    };
+    private Uri baseContentUri;
 
-    public AppDataHandler(Context ctx) {
+    public AppDataHandler(Context ctx,Uri mBaseContentUri) {
         mContext = ctx;
+        baseContentUri = mBaseContentUri;
     }
 
-    public void applyConferenceData(String[] dataBodies,String dataTimestamp, boolean downloadsAllowed) throws IOException {
+    /**
+     * 为每一个数据类型创建handler,由AppDataHandler统一调用
+     */
+    public abstract void mappingJsonHandler();
+
+
+    /**
+     * 设置需要通知的ContentObserver path
+     */
+    public void setTopLevelPath(String[] paths) {
+        mTopLevelPath = Arrays.asList(paths);
+    }
+
+    public void applyConferenceData(String[] dataBodies, String dataTimestamp, boolean downloadsAllowed) throws IOException {
         Log.i(TAG, "Applying data from " + dataBodies.length + " files");
 
         // 为每一个数据类型创建handler
-        mHandlerForKey.put(DATA_KEY_CONTACT_TYPES, mContactTypesHandler = new ContactTypesHandler(mContext));
-        mHandlerForKey.put(DATA_KEY_CONTACTS,mContactsHandler = new ContactsHandler(mContext));
-        mHandlerForKey.put(DATA_KEY_JOBS,mJobsHandler = new JobsHandler(mContext));
+        mappingJsonHandler();
 
         // 调用这些handler处理json
         Log.i(TAG, "Processing " + dataBodies.length + " JSON objects.");
@@ -75,9 +74,9 @@ public class AppDataHandler {
 
         // 创建必要的content provider operations
         ArrayList<ContentProviderOperation> batch = new ArrayList<ContentProviderOperation>();
-        for (String key : DATA_KEYS_IN_ORDER) {
-            Log.i(TAG, "Building content provider operations for: " + key);
-            mHandlerForKey.get(key).makeContentProviderOperations(batch);
+        for (Map.Entry<String, JSONHandler> entry : mHandlerForKey.entrySet()) {
+            Log.i(TAG, "Building content provider operations for: " + entry.getKey());
+            entry.getValue().makeContentProviderOperations(batch);
             Log.i(TAG, "Content provider operations so far: " + batch.size());
         }
         Log.i(TAG, "Total content provider operations: " + batch.size());
@@ -102,9 +101,11 @@ public class AppDataHandler {
         // 通知顶级路径
         Log.d(TAG, "Notifying changes on all top-level paths on Content Resolver.");
         ContentResolver resolver = mContext.getContentResolver();
-        for (String path : Contract.TOP_LEVEL_PATHS) {
-            Uri uri = Contract.BASE_CONTENT_URI.buildUpon().appendPath(path).build();
-            resolver.notifyChange(uri, null);
+        if (mTopLevelPath != null && mTopLevelPath.size() != 0) {
+            for (String path : mTopLevelPath.toArray(new String[]{})) {
+                Uri uri = baseContentUri.buildUpon().appendPath(path).build();
+                resolver.notifyChange(uri, null);
+            }
         }
         // 更新时间戳
         setDataTimestamp(dataTimestamp);
