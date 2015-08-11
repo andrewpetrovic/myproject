@@ -10,6 +10,10 @@ public class Contract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     private static final String PATH_CONTACTS = "contacts";
 
+    public static final String[] TOP_LEVEL_PATHS = {
+            PATH_CONTACTS
+    };
+
     interface ContactsColumns {
         String CONTACT_ID = "contact_id";
         String CONTACT_COLOR = "contact_color";
