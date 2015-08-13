@@ -59,6 +59,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.turbomanage.basic-http-client:http-client-android:0.89'
     compile project(':appbase')
     compile project(':txpushlib')
     compile project(':indexbar')

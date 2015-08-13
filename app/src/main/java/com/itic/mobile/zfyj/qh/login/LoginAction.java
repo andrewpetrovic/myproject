@@ -13,8 +13,8 @@ import com.itic.mobile.net.NetConnection;
 public class LoginAction {
 
     public LoginAction(String userName, String loginPwd, String token, String sid, final LoginSuccessCallback successCallback, final LoginFailCallback failCallback, final LoginErrorCallback errorCallback) {
-        new NetConnection(true, QHYJApi.LoginInterfaceService, HttpMethod.POST,
-//        new NetConnection(true, QHYJApi.LoginInterfaceService, HttpMethod.GET,
+//        new NetConnection(true, QHYJApi.LoginInterfaceService, HttpMethod.POST,
+        new NetConnection(true, QHYJApi.LoginInterfaceService, HttpMethod.GET,
                 new NetConnection.Callback() {
 
                     @Override
