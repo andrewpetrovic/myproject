@@ -23,7 +23,7 @@ public class NotificationReceiver extends BroadcastReceiver implements ISubject 
         msg.setNotificationId(intent.getIntExtra(MessageReceiver.KEY_NOTIFICATION_ID, 0));
         msg.setTitle(intent.getStringExtra(MessageReceiver.KEY_NOTIFICATION_TITLE));
         msg.setContent(intent.getStringExtra(MessageReceiver.KEY_NOTIFICATION_CONTENT));
-        msg.setNotificationActionType(intent.getIntExtra(MessageReceiver.KEY_NOTIFICATION_ACTION_TYPE, 4));
+        msg.setNotificationActionType(intent.getIntExtra(MessageReceiver.KEY_NOTIFICATION_ACTION_TYPE, 0));
         msg.setNotificationActivity(intent.getStringExtra(MessageReceiver.KEY_NOTIFICATION_ACTIVITY));
         msg.setMessageType(ObserverMessage.BROADCAST_NOTIFICATION);
         notifyObservers(msg);

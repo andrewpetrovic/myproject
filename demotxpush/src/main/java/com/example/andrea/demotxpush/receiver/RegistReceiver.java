@@ -13,9 +13,6 @@ import com.tencent.android.tpush.XGPushBaseReceiver;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by andrea on 15-8-18.
- */
 public class RegistReceiver extends BroadcastReceiver implements ISubject{
 
     List<IObserver> list = new ArrayList<IObserver>();

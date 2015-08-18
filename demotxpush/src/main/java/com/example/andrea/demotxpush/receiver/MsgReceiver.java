@@ -19,7 +19,7 @@ public class MsgReceiver extends BroadcastReceiver implements ISubject {
     @Override
     public void onReceive(Context context, Intent intent) {
         ObserverMessage msg = new ObserverMessage();
-        msg.setTitle(intent.getStringExtra(MessageReceiver.KEY_MSG_TITLE));
+//        msg.setTitle(intent.getStringExtra(MessageReceiver.KEY_MSG_TITLE));
         msg.setContent(intent.getStringExtra(MessageReceiver.KEY_MSG_CONTENT));
         msg.setMessageType(ObserverMessage.BROADCAST_MSG);
         notifyObservers(msg);

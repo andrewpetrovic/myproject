@@ -39,7 +39,7 @@ public class MessageReceiver extends XGPushBaseReceiver {
 
 
     public static final String KEY_MSG_CONTENT = "KEY_MSG_CONTENT";
-    public static final String KEY_MSG_TITLE = "KEY_MSG_TITLE";
+//    public static final String KEY_MSG_TITLE = "KEY_MSG_TITLE";
 
     public static final String KEY_MSG_ID = "KEY_MSG_ID";
     public static final String KEY_NOTIFICATION_ID = "KEY_NOTIFICATION_ID";
@@ -176,7 +176,8 @@ public class MessageReceiver extends XGPushBaseReceiver {
         Intent intent = new Intent();
         intent.setAction(MESSAGE_ACTION);
         intent.putExtra(KEY_MSG_CONTENT, message.getContent());
-        intent.putExtra(KEY_MSG_TITLE,message.getTitle());
+        // title暂时没什么用
+//        intent.putExtra(KEY_MSG_TITLE,message.getTitle());
         context.sendBroadcast(intent);
     }
 

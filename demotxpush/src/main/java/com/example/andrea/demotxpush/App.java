@@ -165,11 +165,11 @@ public class App extends Application implements XGIOperateCallback,IObserver {
                         "tag delete fail," + "tag name: " + message.getTagName(),Toast.LENGTH_SHORT).show();
                 break;
             case ObserverMessage.BROADCAST_MSG:
-                Log.i(TAG,"Msg title: " + message.getTitle()
-                        + "; Msg content: " + message.getContent());
+//                Log.i(TAG,"Msg title: " + message.getTitle()
+//                        + "; Msg content: " + message.getContent());
+                Log.i(TAG, "Msg content: " + message.getContent());
                 Toast.makeText(getApplicationContext(),
-                        "Msg title: " + message.getTitle()
-                        + "; Msg content: " + message.getContent(),
+                        "Msg content: " + message.getContent(),
                         Toast.LENGTH_SHORT).show();
                 break;
             case ObserverMessage.BROADCAST_NOTIFICATION:
