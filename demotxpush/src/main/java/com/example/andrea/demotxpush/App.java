@@ -12,6 +12,7 @@ import com.example.andrea.demotxpush.observer.ObserverMessage;
 import com.example.andrea.demotxpush.receiver.MsgReceiver;
 import com.example.andrea.demotxpush.receiver.NotificationClickReceiver;
 import com.example.andrea.demotxpush.receiver.NotificationReceiver;
+import com.example.andrea.demotxpush.receiver.RegistReceiver;
 import com.example.andrea.demotxpush.receiver.SetDeleteTagReceiver;
 import com.itic.mobile.txpush.receiver.MessageReceiver;
 import com.tencent.android.tpush.XGIOperateCallback;
@@ -27,6 +28,7 @@ public class App extends Application implements XGIOperateCallback,IObserver {
 
     private static final String TAG = "App";
 
+    private RegistReceiver registeReceiver;
     private SetDeleteTagReceiver setDeleteTagReceiver;
     private MsgReceiver msgReceiver;
     private NotificationClickReceiver notificationClickReceiver;
@@ -99,6 +101,50 @@ public class App extends Application implements XGIOperateCallback,IObserver {
     public void handleObserverMessage(ObserverMessage message) {
         int type = message.getMessageType();
         switch (type){
+            case ObserverMessage.BROADCAST_REGIST_SUCCESS:
+                Log.i(TAG,"regist success,"
+                        + "token: " + message.getToken()
+                        + "accessId: " + message.getAccessId()
+                        + "account: " + message.getAccount()
+                        + "ticket: " + message.getTicket()
+                        + "ticket type: " + message.getTicketType());
+                Toast.makeText(getApplicationContext(),
+                        "regist success,"
+                                + "token: " + message.getToken()
+                                + "accessId: " + message.getAccessId()
+                                + "account: " + message.getAccount()
+                                + "ticket: " + message.getTicket()
+                                + "ticket type: " + message.getTicketType()
+                        ,Toast.LENGTH_SHORT).show();
+                break;
+            case ObserverMessage.BROADCAST_REGIST_FAIL:
+                Log.i(TAG, "regist fail,"
+                        + "token: " + message.getToken()
+                        + "accessId: " + message.getAccessId()
+                        + "account: " + message.getAccount()
+                        + "ticket: " + message.getTicket()
+                        + "ticket type: " + message.getTicketType());
+                Toast.makeText(getApplicationContext(),
+                        "regist fail,"
+                                + "token: " + message.getToken()
+                                + "accessId: " + message.getAccessId()
+                                + "account: " + message.getAccount()
+                                + "ticket: " + message.getTicket()
+                                + "ticket type: " + message.getTicketType()
+                        ,Toast.LENGTH_SHORT).show();
+                break;
+            case ObserverMessage.BROADCAST_UNREGIST_SUCCESS:
+                Log.i(TAG, "unregist success");
+                Toast.makeText(getApplicationContext(),
+                        "unregist success"
+                        ,Toast.LENGTH_SHORT).show();
+                break;
+            case ObserverMessage.BROADCAST_UNREGIST_FAIL:
+                Log.i(TAG, "unregist fail");
+                Toast.makeText(getApplicationContext(),
+                        "unregist fail"
+                        ,Toast.LENGTH_SHORT).show();
+                break;
             case ObserverMessage.BROADCAST_SET_TAG_SUCCESS:
                 Log.i(TAG,"new tag set success," + "tag name: " + message.getTagName());
                 Toast.makeText(getApplicationContext(),
@@ -176,15 +222,21 @@ public class App extends Application implements XGIOperateCallback,IObserver {
     }
 
     private void regiestReceiver(){
+        registeReceiver = new RegistReceiver();
         setDeleteTagReceiver = new SetDeleteTagReceiver();
         msgReceiver = new MsgReceiver();
         notificationClickReceiver = new NotificationClickReceiver();
         notificationReceiver = new NotificationReceiver();
 
+        registeReceiver.attachObserver(this);
         setDeleteTagReceiver.attachObserver(this);
         msgReceiver.attachObserver(this);
         notificationClickReceiver.attachObserver(this);
         notificationReceiver.attachObserver(this);
+
+        IntentFilter regIntentFilter = new IntentFilter();
+        regIntentFilter.addAction(MessageReceiver.REGISTER_ACTION);
+        getApplicationContext().registerReceiver(registeReceiver,regIntentFilter);
 
         IntentFilter tagIntentFilter = new IntentFilter();
         tagIntentFilter.addAction(MessageReceiver.TAG_ACTION);

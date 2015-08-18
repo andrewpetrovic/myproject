@@ -9,6 +9,20 @@ public class ObserverMessage {
     public static final int BROADCAST_MSG = 5;
     public static final int BROADCAST_NOTIFICATION = 6;
     public static final int BROADCAST_NOTIFICATION_CLICK = 7;
+    public static final int BROADCAST_REGIST_SUCCESS = 9;
+    public static final int BROADCAST_UNREGIST_SUCCESS = 10;
+    public static final int BROADCAST_REGIST_FAIL= 11;
+    public static final int BROADCAST_UNREGIST_FAIL = 12;
+
+    private String token;
+
+    private long accessId;
+
+    private String account;
+
+    private String ticket;
+
+    private short ticketType;
 
     private int messageType;
 
@@ -27,6 +41,46 @@ public class ObserverMessage {
     private int notificationActionType;
 
     private String notificationActivity;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public long getAccessId() {
+        return accessId;
+    }
+
+    public void setAccessId(long accessId) {
+        this.accessId = accessId;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public short getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(short ticketType) {
+        this.ticketType = ticketType;
+    }
 
     public String getTagName() {
         return tagName;

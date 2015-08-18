@@ -22,8 +22,16 @@ public class MessageReceiver extends XGPushBaseReceiver {
     public static final String MESSAGE_ACTION = "com.itic.mobile.xg.push.broadcast.MESSAGE";
     public static final String NOTIFICATION_CLICK_ACTION = "com.itic.mobile.xg.push.broadcast.NOTIFICATION_CLICK";
 
-
     public static final String KEY_ERROR_CODE = "KEY_ERROR_CODE";
+
+    public static final String KEY_REGISTE = "KEY_REGISTE";
+    public static final String KEY_UNREGISTE = "KEY_UNREGISTE";
+    public static final String KEY_ACCESSID = "KEY_ACCESSID";
+    public static final String KEY_TOKEN = "KEY_TOKEN";
+    public static final String KEY_ACCOUNT = "KEY_ACCOUNT";
+    public static final String KEY_TICKET = "KEY_TICKET";
+    public static final String KEY_TICKET_TYPE = "KEY_ACCESSID";
+
     public static final String KEY_TAG = "KEY_TAG";
     public static final String KEY_SET_TAG = "KEY_SET_TAG";
     public static final String KEY_DELETE_TAG = "KEY_DELETE_TAG";
@@ -61,6 +69,17 @@ public class MessageReceiver extends XGPushBaseReceiver {
         } else {
             text = message + "注册失败，错误码：" + errorCode;
         }
+        //发出广播
+        Intent intent = new Intent();
+        intent.setAction(REGISTER_ACTION);
+        intent.putExtra(KEY_ERROR_CODE, errorCode);
+        intent.putExtra(KEY_ACCESSID,message.getAccessId());
+        intent.putExtra(KEY_TOKEN,message.getToken());
+        intent.putExtra(KEY_ACCOUNT,message.getAccount());
+        intent.putExtra(KEY_TICKET,message.getTicket());
+        intent.putExtra(KEY_TICKET_TYPE,message.getTicketType());
+        intent.putExtra(KEY_TAG,KEY_REGISTE);
+        context.sendBroadcast(intent);
         Log.d(LogTag, text);
     }
 
@@ -80,6 +99,13 @@ public class MessageReceiver extends XGPushBaseReceiver {
         } else {
             text = "反注册失败" + errorCode;
         }
+        Log.d(LogTag, text);
+        //发出广播
+        Intent intent = new Intent();
+        intent.setAction(REGISTER_ACTION);
+        intent.putExtra(KEY_ERROR_CODE, errorCode);
+        intent.putExtra(KEY_TAG,KEY_UNREGISTE);
+        context.sendBroadcast(intent);
         Log.d(LogTag, text);
     }
 

@@ -11,23 +11,38 @@ import com.tencent.android.tpush.XGPushManager;
 
 public class MainActivity extends ActionBarActivity{
 
-    private EditText editText;
+    private EditText editTag;
+    private EditText editAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editText = (EditText) findViewById(R.id.editText);
+        editTag = (EditText) findViewById(R.id.edit_tag);
+        editAccount = (EditText) findViewById(R.id.edit_account);
     }
 
     public void setTag(View view){
-        String tagName = editText.getText().toString();
+        String tagName = editTag.getText().toString();
         XGPushManager.setTag(getApplicationContext(),tagName);
     }
 
     public void delTag(View view){
-        String tagName = editText.getText().toString();
-        XGPushManager.deleteTag(getApplicationContext(),tagName);
+        String tagName = editTag.getText().toString();
+        XGPushManager.deleteTag(getApplicationContext(), tagName);
+    }
+
+    public void regAccount(View view){
+        String accountName = editAccount.getText().toString();
+        XGPushManager.registerPush(getApplicationContext(),accountName);
+    }
+
+    public void unRegAccount(View view){
+        XGPushManager.registerPush(getApplicationContext(),"*");
+    }
+
+    public void unReg(View view){
+        XGPushManager.unregisterPush(getApplicationContext());
     }
 
     @Override
