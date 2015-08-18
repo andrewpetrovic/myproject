@@ -1,0 +1,8 @@
+<resources>
+
+    <!--Application theme-->
+    <style name = "Theme.demo" parent="Theme.APPBase">
+        <item name="actionBarInsetStart">@dimen/keyline_2</item>
+    </style>
+
+</resources>

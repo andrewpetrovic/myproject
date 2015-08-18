@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <!-- 授权开启自定义的BaseSyncAdapter -->
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <!-- 授权钓鱼用系统Account鉴权功能 -->
+    <!-- 授权调用系统Account鉴权功能 -->
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
