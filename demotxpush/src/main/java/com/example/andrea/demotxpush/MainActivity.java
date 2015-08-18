@@ -4,13 +4,30 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
-public class MainActivity extends ActionBarActivity {
+import com.tencent.android.tpush.XGPushManager;
+
+public class MainActivity extends ActionBarActivity{
+
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editText = (EditText) findViewById(R.id.editText);
+    }
+
+    public void setTag(View view){
+        String tagName = editText.getText().toString();
+        XGPushManager.setTag(getApplicationContext(),tagName);
+    }
+
+    public void delTag(View view){
+        String tagName = editText.getText().toString();
+        XGPushManager.deleteTag(getApplicationContext(),tagName);
     }
 
     @Override

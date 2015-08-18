@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">demotxpush</string>
+    <string name="app_name">txpushdemo</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
